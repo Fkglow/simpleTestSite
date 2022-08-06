@@ -16,8 +16,11 @@ def date_picker_is_visible(driver_instance):
     return elem.is_displayed()
 
 def choose_date(driver_instance):
+
+    driver_instance.switch_to_frame()
     elem = driver_instance.find_element_by_xpath(date_picker)
     elem.click()
+    sleep(3)
     elem.send_keys('102020')
     sleep(3)
     value = '10.10.2020'
