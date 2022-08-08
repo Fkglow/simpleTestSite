@@ -17,16 +17,35 @@ def date_picker_is_visible(driver_instance):
 
 def choose_date(driver_instance):
 
-    driver_instance.switch_to_frame()
     elem = driver_instance.find_element_by_xpath(date_picker)
     elem.click()
-    sleep(3)
-    elem.send_keys('102020')
-    sleep(3)
-    value = '10.10.2020'
+    elem.send_keys('01012020')
+    elem.click()
+    sleep(4)
+    value = '01.01.2020'
     if value == elem.get_attribute("value"):
         return True
     else:
         return False
+
+    #
+    # invalid_message = wait_for_visibility_of_element(driver_instance, invalid_credentials_message).text
+    # message = 'Invalid credentials'
+    # if message == invalid_message:
+    #     return True
+    # else:
+    #     return False
+
+    # driver_instance.switch_to_frame()
+    # elem = driver_instance.find_element_by_xpath(date_picker)
+    # elem.click()
+    # sleep(3)
+    # elem.send_keys('102020')
+    # sleep(3)
+    # value = '10.10.2020'
+    # if value == elem.get_attribute("value"):
+    #     return True
+    # else:
+    #     return False
 
 

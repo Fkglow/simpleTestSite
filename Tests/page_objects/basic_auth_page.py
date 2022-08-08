@@ -25,26 +25,32 @@ def basic_auth_correct_credentials(driver_instance):
     login = driver_instance.find_element_by_xpath(login_button)
     login.click()
 
-def basic_auth_incorrect_username(driver_intance):
+def basic_auth_incorrect_username(driver_instance):
     username = driver_instance.find_element_by_id(username_input)
     username.send_keys('tester')
     password = driver_instance.find_element_by_id(password_input)
     password.send_keys('admin')
     login = driver_instance.find_element_by_xpath(login_button)
     login.click()
-    elem = wait_for_visibility_of_element(driver_intance, invalid_credentials_message)
-    sleep(3)
-    return elem.is_displayed()
+    invalid_message = wait_for_visibility_of_element(driver_instance, invalid_credentials_message).text
+    message = 'Invalid credentials'
+    if message == invalid_message:
+        return True
+    else:
+        return False
 
-def basic_auth_incorrect_password(driver_intance):
+def basic_auth_incorrect_password(driver_instance):
     username = driver_instance.find_element_by_id(username_input)
     username.send_keys('admin')
     password = driver_instance.find_element_by_id(password_input)
     password.send_keys('testento')
     login = driver_instance.find_element_by_xpath(login_button)
     login.click()
-    elem = wait_for_visibility_of_element(driver_intance, invalid_credentials_message)
-    sleep(3)
-    return elem.is_displayed()
+    invalid_message = wait_for_visibility_of_element(driver_instance, invalid_credentials_message).text
+    message = 'Invalid credentials'
+    if message == invalid_message:
+        return True
+    else:
+        return False
 
 
