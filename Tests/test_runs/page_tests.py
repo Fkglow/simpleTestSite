@@ -8,9 +8,10 @@ from Tests.page_objects import users_page
 from Tests.page_objects import inputs_page
 from Tests.page_objects import dropdowns_page
 from Tests.page_objects import add_remove_page
-from Tests.page_objects import date_picker_page
+# from Tests.page_objects import date_picker_page
 from Tests.page_objects import basic_auth_page
 from Tests.page_objects import login_page
+from Tests.page_objects import form_page
 
 class Tests(unittest.TestCase):
     def setUp(self):
@@ -76,6 +77,15 @@ class Tests(unittest.TestCase):
         basic_auth_page.basic_auth_correct_credentials(self.driver)
         self.assertTrue(login_page.login_success_message_displayed(self.driver))
         self.assertTrue(login_page.return_to_main_page(self.driver))
+
+    def test12_form_success(self):
+        form_page.click_form_tab(self.driver)
+        self.assertTrue(form_page.form_content_visible(self.driver))
+        form_page.add_first_name(self.driver)
+        form_page.add_last_name(self.driver)
+        form_page.submit_form(self.driver)
+        self.assertTrue(form_page.success_alert_visible(self.driver))
+
 
     def test11_dropdown_select(self):
         dropdowns_page.click_dropdown_tab(self.driver)
