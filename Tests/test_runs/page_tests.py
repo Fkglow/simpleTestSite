@@ -12,6 +12,7 @@ from Tests.page_objects import add_remove_page
 from Tests.page_objects import basic_auth_page
 from Tests.page_objects import login_page
 from Tests.page_objects import form_page
+from Tests.page_objects import press_key_page
 
 class Tests(unittest.TestCase):
     def setUp(self):
@@ -85,19 +86,24 @@ class Tests(unittest.TestCase):
         form_page.add_last_name(self.driver)
         form_page.submit_form(self.driver)
         self.assertTrue(form_page.success_alert_visible(self.driver))
+        self.assertFalse(form_page.close_success_alert(self.driver))
 
-
-    def test11_dropdown_select(self):
+    def test13_dropdown_select(self):
         dropdowns_page.click_dropdown_tab(self.driver)
         self.assertTrue(dropdowns_page.dropdown_content_visible(self.driver))
         dropdowns_page.get_first_dropdown_value(self.driver)
 
-    def test12_add_element(self):
+    def test14_key_presses(self):
+        press_key_page.click_key_presses_tab(self.driver)
+        self.assertTrue(press_key_page.key_presses_content_visible(self.driver))
+        press_key_page.press_key(self.driver)
+
+    def test15_add_element(self):
         add_remove_page.click_add_remove_tab(self.driver)
         self.assertTrue(add_remove_page.add_remove_content_visible(self.driver))
         add_remove_page.add_element(self.driver)
 
-    def test13_delete_element(self):
+    def test16_delete_element(self):
         add_remove_page.click_add_remove_tab(self.driver)
         self.assertTrue(add_remove_page.add_remove_content_visible(self.driver))
         add_remove_page.add_element(self.driver)

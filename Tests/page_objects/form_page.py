@@ -38,11 +38,15 @@ def success_alert_visible(driver_instance):
             return True
     except NoAlertPresentException:
         return False
-#
-# def close_success_alert(driver_instance):
-#     success_alert = wait_for_alert_to_be_presented(driver_instance)
-#     success_alert.accept()
-#     try:
-#         wait_for_element_to_be_clickable(driver_instance,submit_button)
-#         return True
+
+def close_success_alert(driver_instance):
+        success_alert = wait_for_alert_to_be_presented(driver_instance)
+        success_alert.accept()
+        try:
+            driver_instance.switch_to.alert()
+            return True
+        except NoAlertPresentException:
+            return False
+
+
 
