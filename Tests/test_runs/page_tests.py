@@ -13,6 +13,7 @@ from Tests.page_objects import basic_auth_page
 from Tests.page_objects import login_page
 from Tests.page_objects import form_page
 from Tests.page_objects import press_key_page
+from Tests.page_objects import drag_and_drop_page
 
 class Tests(unittest.TestCase):
     def setUp(self):
@@ -96,14 +97,22 @@ class Tests(unittest.TestCase):
     def test14_key_presses(self):
         press_key_page.click_key_presses_tab(self.driver)
         self.assertTrue(press_key_page.key_presses_content_visible(self.driver))
-        press_key_page.press_key(self.driver)
+        self.assertTrue(press_key_page.press_key(self.driver))
 
-    def test15_add_element(self):
+    def test15_drag_and_drop(self):
+        drag_and_drop_page.click_drag_and_drop_tab(self.driver)
+        self.assertTrue(drag_and_drop_page.drag_and_drop_content_visible(self.driver))
+        drag_and_drop_page.drag_and_drop_element_A(self.driver)
+        self.assertTrue(drag_and_drop_page.check_result_first_switch(self.driver))
+        drag_and_drop_page.drag_and_drop_element_A(self.driver)
+        self.assertTrue(drag_and_drop_page.check_result_second_switch(self.driver))
+
+    def test16_add_element(self):
         add_remove_page.click_add_remove_tab(self.driver)
         self.assertTrue(add_remove_page.add_remove_content_visible(self.driver))
         add_remove_page.add_element(self.driver)
 
-    def test16_delete_element(self):
+    def test17_delete_element(self):
         add_remove_page.click_add_remove_tab(self.driver)
         self.assertTrue(add_remove_page.add_remove_content_visible(self.driver))
         add_remove_page.add_element(self.driver)

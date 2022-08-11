@@ -12,14 +12,17 @@ def click_key_presses_tab(driver_instance):
 
 def key_presses_content_visible(driver_instance):
     elem = wait_for_visibility_of_element(driver_instance, pressKey_content)
-    elem.is_displayed()
+    return elem.is_displayed()
 
 def press_key(driver_instance):
         input = driver_instance.find_element_by_id(input_field)
-        result = driver_instance.find_element_by_id(message)
+        res = driver_instance.find_element_by_id(result)
         input.click()
         input.send_keys(Keys.ENTER)
         elem = wait_for_visibility_of_element(driver_instance, result)
         mess = elem.text
-        message_text = 'You erntered: ENTER'
-        print(mess)
+        message_text = 'You entered: ENTER'
+        if mess == message_text:
+            return True
+        else:
+            return False
