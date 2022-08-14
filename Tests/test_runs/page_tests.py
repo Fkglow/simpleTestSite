@@ -14,6 +14,8 @@ from Tests.page_objects import login_page
 from Tests.page_objects import form_page
 from Tests.page_objects import press_key_page
 from Tests.page_objects import drag_and_drop_page
+from Tests.page_objects import status_codes_page
+from Tests.page_objects import iframe_page
 
 class Tests(unittest.TestCase):
     def setUp(self):
@@ -118,6 +120,38 @@ class Tests(unittest.TestCase):
         add_remove_page.add_element(self.driver)
         add_remove_page.delete_element(self.driver)
         self.assertTrue(add_remove_page.element_is_invisible(self.driver))
+
+    def test18_status_codes_200(self):
+        status_codes_page.click_status_codes_tab(self.driver)
+        self.assertTrue(status_codes_page.status_codes_visible(self.driver))
+        self.assertTrue(status_codes_page.status_code_200(self.driver))
+
+    def test19_status_codes_305(self):
+        status_codes_page.click_status_codes_tab(self.driver)
+        self.assertTrue(status_codes_page.status_code_305(self.driver))
+
+    def test20_status_codes_404(self):
+        status_codes_page.click_status_codes_tab(self.driver)
+        self.assertTrue(status_codes_page.status_code_404(self.driver))
+
+    def test21_status_codes_500(self):
+        status_codes_page.click_status_codes_tab(self.driver)
+        self.assertTrue(status_codes_page.status_code_500(self.driver))
+
+    def test22_iframe_content_visible(self):
+        iframe_page.click_iframe_tab(self.driver)
+        self.assertTrue(iframe_page.iframe_content_visible(self.driver))
+
+    def test23_iframe_click_button1(self):
+        iframe_page.click_iframe_tab(self.driver)
+        self.assertTrue(iframe_page.iframe_content_visible(self.driver))
+        self.assertTrue(iframe_page.click_button1(self.driver))
+
+    def test24_iframe_click_button2(self):
+        iframe_page.click_iframe_tab(self.driver)
+        self.assertTrue(iframe_page.iframe_content_visible(self.driver))
+        self.assertTrue(iframe_page.click_button2(self.driver))
+
 
 
 if __name__ == '__main__':
