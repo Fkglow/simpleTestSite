@@ -5,8 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
 
 
-def hover_over_element(driver_instance, id):
-    element = driver_instance.find_element_by_xpath(id)
+def hover_over_element(driver_instance, xpath):
+    element = driver_instance.find_element_by_xpath(xpath)
     hover = ActionChains(driver_instance).move_to_element(element)
     hover.perform()
 

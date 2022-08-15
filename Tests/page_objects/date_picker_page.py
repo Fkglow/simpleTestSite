@@ -1,3 +1,5 @@
+import time
+
 from Tests.helpers.support_functions import *
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
@@ -15,18 +17,30 @@ def date_picker_is_visible(driver_instance):
     elem = wait_for_visibility_of_element(driver_instance, date_picker_content)
     return elem.is_displayed()
 
-def choose_date(driver_instance):
-
+def choose_correct_date(driver_instance):
     elem = driver_instance.find_element_by_xpath(date_picker)
     elem.click()
-    elem.send_keys('01012020')
+    elem.send_keys('2020-02-02')
     elem.click()
     sleep(4)
-    value = '01.01.2020'
+    value = '2020-02-02'
+    time.sleep(2)
     if value == elem.get_attribute("value"):
         return True
     else:
         return False
+
+def choose_incorrect_date(driver_instance):
+    elem = driver_instance.find_element_by_xpath(date_picker)
+    elem.send_keys('2044-44-44')
+    value = '2044-44-44'
+    if value == elem.get_attribute("value"):
+        return False
+    else:
+        return True
+
+
+
 
     #
     # invalid_message = wait_for_visibility_of_element(driver_instance, invalid_credentials_message).text

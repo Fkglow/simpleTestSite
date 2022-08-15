@@ -49,4 +49,14 @@ def close_success_alert(driver_instance):
             return False
 
 
+def empty_inputs_validation(driver_instance):
+    fname = driver_instance.find_element_by_id(first_name)
+    validation_mess = fname.get_attribute('validationMessage')
+    value = 'Please fill out this field.'
+    if validation_mess == value:
+        return True
+    else:
+        return False
+
+
 
